@@ -295,7 +295,7 @@ Comments may contain newlines.
 
 ### Partials
 
-Partials begin with a greater than sign, like {{> box}}.
+Partials begin with a greater than sign, like `{{>box}}`.
 
 Partials are rendered at runtime (as opposed to compile time), so recursive
 partials are possible. Just avoid infinite loops.
@@ -306,10 +306,10 @@ They also inherit the calling context. Whereas in ERB you may have this:
 
 Mustache requires only this:
 
-    {{> next_more}}
+    {{>next_more}}
 
-Why? Because the `next_more.mustache` file will inherit the `size` and `start`
-variables from the calling context. In this way you may want to think of
+Why? Because the template in the `next_more` partial will inherit the `size` and
+`start` variables from the calling context. In this way you may want to think of
 partials as includes, or template expansion, even though it's not literally true.
 
 For example, this template and partial:
@@ -317,7 +317,7 @@ For example, this template and partial:
     base.mustache:
     <h2>Names</h2>
     {{#names}}
-      {{> user}}
+      {{>user}}
     {{/names}}
 
     user.mustache:
@@ -356,18 +356,6 @@ this "is useful for languages like TeX, where double-braces may occur in the
 text and are awkward to use for markup."
 
 Custom delimiters may not contain whitespace or the equals sign.
-
-## Streaming
-
-To stream template results out of mustache.js, you can pass an optional callback
-to the call to `Mustache.render`:
-
-    Mustache.render(template, view, partials, function (chunk) {
-      print(chunk);
-    });
-
-When the template is finished rendering, the callback will be called with `null`
-after which it won't be called anymore for that rendering.
 
 ## Plugins for JavaScript Libraries
 
